@@ -16,6 +16,8 @@
 
 #include "gles3jni.h"
 #include <EGL/egl.h>
+#include "Renderer.h"
+#include "Shader.h"
 
 static const char VERTEX_SHADER[] =
     "#version 100\n"
@@ -82,7 +84,8 @@ RendererES2::RendererES2()
 {}
 
 bool RendererES2::init() {
-    mProgram = createProgram(VERTEX_SHADER, FRAGMENT_SHADER);
+    Shader shader{VERTEX_SHADER, FRAGMENT_SHADER};
+    mProgram = shader.program();
     if (!mProgram)
         return false;
     mPosAttrib = glGetAttribLocation(mProgram, "pos");

@@ -48,7 +48,9 @@ set_target_properties( ex-png
 
 add_library(gles3jni SHARED
             ${GL3STUB_SRC}
-            gles3jni.cpp 
+            gles3jni.cpp
+            glcommon.cpp
+            Renderer.cpp
             RendererES2.cpp
             RendererES3.cpp
             external/image/image.cpp

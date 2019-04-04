@@ -15,6 +15,9 @@
  */
 
 #include "gles3jni.h"
+#include "Renderer.h"
+#include "Shader.h"
+#include "logger.h"
 #include <EGL/egl.h>
 
 #define STR(s) #s
@@ -87,7 +90,8 @@ RendererES3::RendererES3()
 }
 
 bool RendererES3::init() {
-    mProgram = createProgram(VERTEX_SHADER, FRAGMENT_SHADER);
+  Shader shader{VERTEX_SHADER, FRAGMENT_SHADER};
+  mProgram = shader.program();
     if (!mProgram)
         return false;
 
@@ -161,5 +165,5 @@ void RendererES3::unmapTransformBuf() {
 void RendererES3::draw(unsigned int numInstances) {
     glUseProgram(mProgram);
     glBindVertexArray(mVBState);
-    glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, 4, 5); //numInstances);
+    glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, 4, numInstances);
 }
