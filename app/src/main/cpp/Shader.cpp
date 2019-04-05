@@ -40,7 +40,7 @@ Shader::Shader(const char *vtxSrc, const char *fragSrc) {
   GLuint program = 0;
   GLint linked = GL_FALSE;
 
-  while (true) {
+  do {
     vtxShader = createShader(GL_VERTEX_SHADER, vtxSrc);
     if (!vtxShader) {
       break;
@@ -76,7 +76,7 @@ Shader::Shader(const char *vtxSrc, const char *fragSrc) {
       glDeleteProgram(program);
       program = 0;
     }
-  }
+  } while (false);
   glDeleteShader(vtxShader);
   glDeleteShader(fragShader);
 

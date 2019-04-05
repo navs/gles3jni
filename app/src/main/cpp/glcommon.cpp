@@ -1,6 +1,8 @@
 #include "glcommon.h"
 #include "logger.h"
 
+
+
 void printGlString(const char* name, GLenum s)
 {
   const char* v = (const char*)glGetString(s);

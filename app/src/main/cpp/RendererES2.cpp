@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
-#include "gles3jni.h"
+#include "glcommon.h"
 #include <EGL/egl.h>
 #include "Renderer.h"
 #include "Shader.h"
+#include "logger.h"
 
 static const char VERTEX_SHADER[] =
     "#version 100\n"

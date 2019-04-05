@@ -19,7 +19,7 @@
 #include <string.h>
 #include <time.h>
 
-#include "gles3jni.h"
+#include "glcommon.h"
 #include "logger.h"
 #include "Renderer.h"
 

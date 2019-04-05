@@ -11,4 +11,4 @@ public:
   GLuint program() const { return mProgram; }
 };
 
-#endif __SHADER_H__
+#endif // __SHADER_H__

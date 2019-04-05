@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#include "gles3jni.h"
+#include "glcommon.h"
 #include "Renderer.h"
 #include "Shader.h"
 #include "logger.h"

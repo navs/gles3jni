@@ -1,4 +1,4 @@
-#include "REnderer.h"
+#include "Renderer.h"
 #include <math.h>
 #include <string.h>
 #include <time.h>
@@ -29,7 +29,7 @@ void Renderer::resize(int w, int h) {
 
   mLastFrameNs = 0;
 
-  glViewport(0, 0, w/2, h);
+  glViewport(0, 0, w, h);
 }
 
 void Renderer::calcSceneParams(unsigned int w, unsigned int h,
@@ -108,7 +108,7 @@ void Renderer::step() {
 void Renderer::render() {
   step();
 
-  glClearColor(0.2f, 0.2f, 0.3f, 1.0f);
+  glClearColor(0.5f, 0.5f, 1.0f, 1.0f);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   draw(mNumInstances);
   checkGlError("Renderer::render");
