@@ -17,6 +17,12 @@ android {
             }
         }
     }
+
+    dependencies {
+//        compile "com.android.support:support-cor-utils:24.2.0"
+        implementation 'com.android.support:appcompat-v7:28.+'
+    }
+
     buildTypes {
         release {
             minifyEnabled = false

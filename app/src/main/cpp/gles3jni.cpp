@@ -63,7 +63,9 @@ Java_com_android_gles3jni_GLES3JNILib_init(JNIEnv* env, jobject obj) {
 
     const char* versionStr = (const char*)glGetString(GL_VERSION);
     if (strstr(versionStr, "OpenGL ES 3.") && gl3stubInit()) {
-        g_renderer = createES3Renderer();
+//        g_renderer = createES3Renderer();
+        g_renderer = createTextureRenderer();
+
     } else if (strstr(versionStr, "OpenGL ES 2.")) {
         g_renderer = createES2Renderer();
     } else {

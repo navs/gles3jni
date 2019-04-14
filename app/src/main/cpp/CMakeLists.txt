@@ -53,6 +53,7 @@ add_library(gles3jni SHARED
             Renderer.cpp
             RendererES2.cpp
             RendererES3.cpp
+            TextureRenderer.cpp
             Shader.cpp
             external/image/image.cpp
         )

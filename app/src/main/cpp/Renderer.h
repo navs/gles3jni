@@ -65,5 +65,6 @@ private:
 
 extern Renderer* createES2Renderer();
 extern Renderer* createES3Renderer();
+extern Renderer* createTextureRenderer();
 
 #endif // __RENDERER_H__
