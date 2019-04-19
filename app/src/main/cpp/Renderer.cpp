@@ -3,6 +3,7 @@
 #include <string.h>
 #include <time.h>
 #include <stdlib.h>
+#include "logger.h"
 
 Renderer::Renderer()
         :   mNumInstances(0),
@@ -27,9 +28,14 @@ void Renderer::resize(int w, int h) {
 //    mAngularVelocity[i] = MAX_ROT_SPEED * (2.0*drand48() - 1.0);
 //  }
 //
-//  mLastFrameNs = 0;
+  mLastFrameNs = 0;
 
+
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
   glViewport(0, 0, w, h);
+  mWidth = w;
+  mHeight = h;
+  ALOGV("screen:%dx%d", mWidth, mHeight);
 }
 
 void Renderer::calcSceneParams(unsigned int w, unsigned int h,
@@ -73,7 +79,7 @@ void Renderer::calcSceneParams(unsigned int w, unsigned int h,
 //  mScale[minor] = 0.5f * CELL_SIZE * scene2clip[1];
 }
 
-void Renderer::step() {
+//void Renderer::step() {
 //  timespec now;
 //  clock_gettime(CLOCK_MONOTONIC, &now);
 //  auto nowNs = now.tv_sec*1000000000ull + now.tv_nsec;
@@ -103,14 +109,26 @@ void Renderer::step() {
 //  }
 //
 //  mLastFrameNs = nowNs;
+//}
+
+void Renderer::onStep()
+{
+  timespec now;
+  clock_gettime(CLOCK_MONOTONIC, &now);
+  auto nowNs = now.tv_sec*1000000000ull + now.tv_nsec;
+
+  if (mLastFrameNs > 0) {
+    mDeltaTime = float(nowNs - mLastFrameNs) * 0.000000001f;
+  }
+  mLastFrameNs = nowNs;
 }
 
 void Renderer::render() {
-  step();
+  onStep();
 
-  glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
-  //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  glClear(GL_COLOR_BUFFER_BIT);
+  glClearColor(0.7f, 0.7f, 0.6f, 1.0f);
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  //glClear(GL_COLOR_BUFFER_BIT);
   draw(mNumInstances);
   checkGlError("Renderer::render");
 }
